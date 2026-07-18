@@ -116,6 +116,7 @@ public class Depenizen extends JavaPlugin {
 
     public void registerCoreBridges() {
         // Yes it needs to be `new MyBridge()` not `MyBridge::new` - this is due to an error in the Java runtime.
+        registerBridge("CoordinateOffset", () -> new CoordinateOffsetBridge());
         registerBridge("AreaShop", () -> new AreaShopBridge());
         registerBridge("AriKeys", () -> new AriKeysBridge());
         registerBridge("ASkyBlock", () -> new ASkyBlockBridge());
@@ -170,3 +171,4 @@ public class Depenizen extends JavaPlugin {
         allBridges.put(name, new BridgeData(classCheck, bridgeSupplier));
     }
 }
+
