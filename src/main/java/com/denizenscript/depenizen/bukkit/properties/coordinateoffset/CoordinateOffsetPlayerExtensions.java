@@ -19,10 +19,7 @@ public class CoordinateOffsetPlayerExtensions {
         // @description
         // Returns the player's current coordinate offset as a LocationTag (x, y, z).
         // -->
-        PlayerTag.tagProcessor.registerTag(LocationTag.class, "coordinate_offset", (attribute, player) -> {
-            if (!player.isOnline()) {
-                return null;
-            }
+        PlayerTag.registerOnlineOnlyTag(LocationTag.class, "coordinate_offset", (attribute, player) -> {
             OffsetPlayer offsetPlayer = CoordinateOffset.api().adaptPlayer(player.getPlayerEntity());
             FixedOffset offset = CoordinateOffset.api().getOffset(offsetPlayer);
             if (offset.isZero()) {

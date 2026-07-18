@@ -116,7 +116,6 @@ public class Depenizen extends JavaPlugin {
 
     public void registerCoreBridges() {
         // Yes it needs to be `new MyBridge()` not `MyBridge::new` - this is due to an error in the Java runtime.
-        registerBridge("CoordinateOffset", () -> new CoordinateOffsetBridge());
         registerBridge("AreaShop", () -> new AreaShopBridge());
         registerBridge("AriKeys", () -> new AriKeysBridge());
         registerBridge("ASkyBlock", () -> new ASkyBlockBridge());
@@ -125,6 +124,7 @@ public class Depenizen extends JavaPlugin {
         registerBridge("BigDoors", () -> new BigDoorsBridge());
         registerBridge("BossShopPro", () -> new BossShopBridge());
         registerBridge("ChestShop", () -> new ChestShopBridge());
+        registerBridge("CoordinateOffset", () -> new CoordinateOffsetBridge());
         registerBridge("CoreProtect", () -> new CoreProtectBridge());
         registerBridge("CrackShot", () -> new CrackShotBridge());
         registerBridge("EffectLib", () -> new EffectLibBridge());
