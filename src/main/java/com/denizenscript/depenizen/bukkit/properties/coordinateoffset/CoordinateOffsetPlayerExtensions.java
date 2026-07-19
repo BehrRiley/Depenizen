@@ -9,6 +9,14 @@ import com.jtprince.coordinateoffset.adapter.OffsetPlayer;
 
 public class CoordinateOffsetPlayerExtensions {
 
+    public static CoordinateOffset getApi() {
+        return CoordinateOffset.api();
+    }
+
+    public static OffsetPlayer getOffsetPlayer(PlayerTag player) {
+        return getApi().adaptPlayer(player.getPlayerEntity());
+    }
+
     public static void register() {
 
         // <--[tag]
@@ -20,8 +28,8 @@ public class CoordinateOffsetPlayerExtensions {
         // Returns the player's current coordinate offset as a LocationTag (x, y, z).
         // -->
         PlayerTag.registerOnlineOnlyTag(LocationTag.class, "coordinate_offset", (attribute, player) -> {
-            OffsetPlayer offsetPlayer = CoordinateOffset.api().adaptPlayer(player.getPlayerEntity());
-            FixedOffset offset = CoordinateOffset.api().getOffset(offsetPlayer);
+            OffsetPlayer offsetPlayer = getOffsetPlayer(player);
+            FixedOffset offset = getApi().getOffset(offsetPlayer);
             if (offset.isZero()) {
                 return null;
             }
@@ -47,8 +55,8 @@ public class CoordinateOffsetPlayerExtensions {
             int alignedX = Offset.alignComponentToConfiguredMultiple(x);
             int alignedZ = Offset.alignComponentToConfiguredMultiple(z);
             
-            OffsetPlayer offsetPlayer = CoordinateOffset.api().adaptPlayer(player.getPlayerEntity());
-            CoordinateOffset.api().setOffset(offsetPlayer, Offset.scalable(alignedX, y, alignedZ));
+            OffsetPlayer offsetPlayer = getOffsetPlayer(player);
+            getApi().setOffset(offsetPlayer, Offset.scalable(alignedX, y, alignedZ));
         });
     }
 }
